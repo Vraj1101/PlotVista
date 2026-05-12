@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* Override default Leaflet popup padding for a cleaner look */
+.premium-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.premium-popup .leaflet-popup-content {
+  margin: 0;
+  width: 100% !important;
+}
+
+/* We can add any custom global CSS here later if needed */
+body {
+  font-family: 'Inter', sans-serif; /* We will use a nice modern font */
+  background-color: #f8fafc; /* A very light gray modern background */
+}
