@@ -1,19 +1,138 @@
 @import "tailwindcss";
 
-/* Override default Leaflet popup padding for a cleaner look */
-.premium-popup .leaflet-popup-content-wrapper {
-  padding: 0;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-.premium-popup .leaflet-popup-content {
-  margin: 0;
-  width: 100% !important;
+/* Set global theme body overrides */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #090f1d;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* We can add any custom global CSS here later if needed */
-body {
-  font-family: 'Inter', sans-serif; /* We will use a nice modern font */
-  background-color: #f8fafc; /* A very light gray modern background */
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
+::-webkit-scrollbar-track {
+  background: #090f1d;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 100px;
+  border: 2px solid #090f1d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+/* Slow Drift Animation for glowing background circles */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s infinite ease-in-out;
+}
+
+.animate-float-delayed {
+  animation: float-slow 25s infinite ease-in-out;
+  animation-delay: 3s;
+}
+
+/* Custom Glimmer Glow effect */
+.hover-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+.hover-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(6, 182, 212, 0.4));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+.hover-glow:hover::after {
+  opacity: 1;
+}
+
+/* Leaflet Overrides */
+.leaflet-container {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background: #070c19 !important;
+}
+
+.premium-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 1.5rem !important;
+  overflow: hidden;
+  background: rgba(13, 22, 45, 0.9) !important;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.premium-popup .leaflet-popup-content {
+  margin: 0 !important;
+  width: 320px !important;
+}
+
+.premium-popup .leaflet-popup-tip {
+  background: rgba(13, 22, 45, 0.9) !important;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glowing Pulse Marker Pin */
+.glowing-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 2px solid #10b981;
+  border-radius: 50%;
+  position: relative;
+}
+
+.glowing-pin::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #10b981;
+  opacity: 0.8;
+  animation: pulse-glow 2s infinite ease-out;
+}
+
+.glowing-pin-inner {
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+}
+
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+

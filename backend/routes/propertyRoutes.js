@@ -1,15 +1,31 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { createProperty, getProperties, getPropertyById } = require('../controllers/propertyController');
-const { protect, sellerOnly } = require('../middleware/authMiddleware');
+const {
+  createProperty,
+  getProperties,
+  getPropertyById,
+  getMyProperties,
+  deleteProperty,
+  updateProperty,
+  getDashboardStats
+} = require("../controllers/propertyController");
+const { protect, sellerOnly } = require("../middleware/authMiddleware");
 
 // Anyone can GET all properties to view on the map
 router.get('/', getProperties);
 
-// Anyone can GET a single property's details
+router.get('/my', protect, getMyProperties);
+
 router.get('/:id', getPropertyById);
 
-// Only logged-in users who are SELLERS can POST a new property
-router.post('/', protect, sellerOnly, createProperty);
+router.post('/', protect, createProperty);
 
+router.delete('/:id', protect, deleteProperty);
+router.put('/:id', protect, updateProperty);
+router.get(
+  "/dashboard/stats",
+  protect,
+  getDashboardStats,
+);
 module.exports = router;
+     
