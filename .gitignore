@@ -1,3 +1,36 @@
+# Node Modules
 node_modules/
+
+# Environment Variables
 .env
-uploads/
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Logs
+*.log
+logs/
+
+# Build
+dist/
+build/
+
+# Cache
+.cache/
+
+# Coverage
+coverage/
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.temp
+
+backend/uploads/
